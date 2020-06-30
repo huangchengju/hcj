@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.hcj.mapper.UserMapper">
+    
+    <select id="queryname" resultType="com.qf.hcj.entity.UserEntity">
+
+        select * from t_user where `name`=#{name}
+
+    </select>
+
+    <select id="queryemail" resultType="com.qf.hcj.entity.UserEntity">
+
+        select * from t_user where email=#{email}
+
+    </select>
+
+
+    <insert id="regist" >
+
+        insert into t_user (`name`,password,image,email,isAdmin) values (#{name},#{password},#{image},#{email},'否')
+    </insert>
+    
+    <select id="login" resultType="com.qf.hcj.entity.UserEntity">
+        select * from t_user where `name`=#{name} and `password`=#{password}
+    </select>
+    <select id="findUser" resultType="com.qf.hcj.entity.UserEntity">
+        select * from t_user where isAdmin="否"
+
+    </select>
+
+    <delete id="delete" >
+        delete  from t_user where id=#{id}
+
+    </delete>
+    
+    <update id="update">
+        update t_user set `name` =#{name} , `password`=#{password} ,email=#{email} where id=#{id}
+    </update>
+
+    <select id="queryId" resultType="com.qf.hcj.entity.UserEntity">
+         select * from t_user where id=#{id}
+    </select>
+</mapper>
